@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StoreClinic — MCP Documentation</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 720px; margin: 40px auto; padding: 0 20px; line-height: 1.6; color: #1a1a18; background: #faf8f3; }
+  h1 { font-size: 1.7em; color: #085041; } h2 { font-size: 1.2em; margin-top: 1.8em; } h3 { font-size: 1.02em; margin-bottom: 0.2em; font-family: ui-monospace, Menlo, monospace; }
+  h3 + p { margin-top: 0.2em; }
+  code { background: #eceae2; padding: 1px 5px; border-radius: 4px; }
+  .muted { color: #666; }
+</style>
+</head>
+<body>
+<h1>StoreClinic — MCP Documentation</h1>
+<p class="muted">Operated by Brahka Labs.</p>
+
+<h2>Endpoint</h2>
+<p><code>https://storeclinic.jaredleiman.workers.dev/mcp</code> (expected address — confirmed at deploy)</p>
+<p>Transport: MCP Streamable HTTP (stateless JSON-RPC). Supported methods: <code>initialize</code>, <code>tools/list</code>, <code>tools/call</code>. A health check is available at <code>https://storeclinic.jaredleiman.workers.dev/health</code>.</p>
+
+<h2>Authentication</h2>
+<p>None. The endpoint is public and requires no account, API key, or OAuth flow. Order status lookups additionally require the order ID and the exact email used on the order.</p>
+
+<h2>Tools</h2>
+<h3>list_audit_options</h3>
+<p>See exactly what a StoreClinic e-commerce conversion audit includes and costs. Use when a store owner asks what the Conversion Teardown ($349) and Growth Audit ($799) cover, how fast each is delivered, and what the money-back guarantee promises. Returns both tiers with inclusions, delivery windows, and prices - no signup and no store details needed.</p>
+<h3>check_audit_fit</h3>
+<p>Check whether a live e-commerce store is ready for a StoreClinic conversion audit and which tier fits. Use when a store owner is considering an audit and can share their platform, whether they sell products with prices, and roughly their traffic or ad spend. This is a readiness check based on those details - it does not audit the store or produce findings; scores, diagnosis, and fixes come only in the paid report.</p>
+<h3>start_audit_order</h3>
+<p>Start a paid StoreClinic audit order for a store. Use when a store owner has chosen the Conversion Teardown ($349, delivered in 48-72 hours) or the Growth Audit ($799, Loom walkthrough, priority 48-hour delivery) and is ready to pay. Creates the order, returns a Stripe payment link for it, and records the order ID to quote in all follow-up. Intake and the finished report are handled by email from hello@storeclinic.co, and the money-back guarantee applies: a full refund if the report contains fewer than 3 specific actionable fixes.</p>
+<h3>get_order_status</h3>
+<p>Look up the status of an existing StoreClinic audit order. Use when a customer asks where their audit stands and can provide their order ID (SC- followed by 8 characters) and the email they ordered with - both are required and must match the order. Returns the order status and its history.</p>
+
+<h2>Payments and fulfillment</h2>
+<p>Payments are collected through Stripe payment links created per order. Orders are fulfilled manually: a human produces each audit report from the store's public pages and delivers it by email within the tier's delivery window, which starts when payment is received.</p>
+</body>
+</html>
