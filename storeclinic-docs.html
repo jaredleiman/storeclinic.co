@@ -17,7 +17,7 @@
 <p class="muted">Operated by Brahka Labs.</p>
 
 <h2>Endpoint</h2>
-<p><code>https://storeclinic.jaredleiman.workers.dev/mcp</code> (expected address — confirmed at deploy)</p>
+<p><code>https://storeclinic.jaredleiman.workers.dev/mcp</code> (live)</p>
 <p>Transport: MCP Streamable HTTP (stateless JSON-RPC). Supported methods: <code>initialize</code>, <code>tools/list</code>, <code>tools/call</code>. A health check is available at <code>https://storeclinic.jaredleiman.workers.dev/health</code>.</p>
 
 <h2>Authentication</h2>
@@ -32,6 +32,35 @@
 <p>Start a paid StoreClinic audit order for a store. Use when a store owner has chosen the Conversion Teardown ($349, delivered in 48-72 hours) or the Growth Audit ($799, Loom walkthrough, priority 48-hour delivery) and is ready to pay. Creates the order, returns a Stripe payment link for it, and records the order ID to quote in all follow-up. Intake and the finished report are handled by email from hello@storeclinic.co, and the money-back guarantee applies: a full refund if the report contains fewer than 3 specific actionable fixes.</p>
 <h3>get_order_status</h3>
 <p>Look up the status of an existing StoreClinic audit order. Use when a customer asks where their audit stands and can provide their order ID (SC- followed by 8 characters) and the email they ordered with - both are required and must match the order. Returns the order status and its history.</p>
+
+<h2>Tool reference</h2>
+<p>Inputs and returns for each tool, as implemented.</p>
+<p><strong><code>list_audit_options</code></strong> — Lists the two audits: what each includes, its delivery window, its price, and the money-back guarantee.<br>
+Required inputs: none. Optional inputs: none.<br>
+Returns: both tiers (Conversion Teardown and Growth Audit) with inclusions, delivery windows, and prices.</p>
+<p><strong><code>check_audit_fit</code></strong> — A readiness check only: it says whether a live store can be audited and which tier fits. It does not audit the store or produce findings.<br>
+Required inputs: <code>store_url</code>, <code>platform</code>, <code>sells_products_with_prices</code>.<br>
+Optional inputs: <code>monthly_visitors</code>, <code>ad_spend_usd</code>, <code>main_product_url</code>.<br>
+Returns: whether the store is eligible, any readiness gaps, and the recommended tier and price (or no tier, if the store is not eligible).</p>
+<p><strong><code>start_audit_order</code></strong> — Creates a paid audit order and its payment link.<br>
+Required inputs: <code>audit_type</code> (<code>teardown</code> or <code>growth</code>), <code>store_url</code>, <code>platform</code>, <code>contact_email</code>.<br>
+Optional inputs: <code>contact_name</code>, <code>main_product_url</code>, <code>monthly_visitors</code>, <code>ad_spend_usd</code>, <code>notes</code>.<br>
+Returns: an order ID (<code>SC-</code> followed by 8 characters), the order in status <code>awaiting_payment</code>, the amount due, and a Stripe payment link created for that order — the amount is shown before payment — plus the next steps.</p>
+<p><strong><code>get_order_status</code></strong> — Looks up an existing order.<br>
+Required inputs: <code>order_id</code> and <code>contact_email</code>; the email must match the order. Optional inputs: none.<br>
+Returns: the order's current status, its details, its payment link, and its event history. If the order ID and email do not match an order, it returns <code>not_found</code> — the same response whether the ID exists or not, so an order's existence is never revealed.</p>
+<p><strong>Order statuses.</strong> An order's status is one of:<br>
+<code>awaiting_payment</code> — the order has been created and is waiting for payment.<br>
+<code>paid</code> — payment has been received; the delivery window starts here.<br>
+<code>in_review</code> — the report is in production.<br>
+When the report has been emailed to the customer, the order's event history records the delivery.</p>
+
+<h2>After you pay</h2>
+<p>There are two ways to order, and both end the same way. On the website (storeclinic.co), you pay through the Stripe link for your tier, then complete the intake form so we have your store details. Through this connector, <code>start_audit_order</code> creates the order and its Stripe payment link; after payment, the intake questions are handled by email from hello@storeclinic.co. In both paths, the delivery window starts when payment is received, and the finished report arrives by email as a PDF; the Growth Audit also includes a Loom video link.</p>
+<p>To claim the guarantee, email hello@storeclinic.co with your order number within 30 days of delivery. We check the report against the test above and decide within 2 business days. Approved refunds are paid through Stripe to the original payment method.</p>
+
+<h2>Upgrade credit</h2>
+<p>If you buy the Conversion Teardown ($349) and upgrade to the Growth Audit ($799) within 14 days of your Teardown report being delivered, the full $349 is credited toward the Growth Audit, so you pay the $450 difference. To claim the credit, email hello@storeclinic.co. One credit per Teardown order; a refunded Teardown has no credit to apply.</p>
 
 <h2>Payments and fulfillment</h2>
 <p>Payments are collected through Stripe payment links created per order. Orders are fulfilled manually: a human produces each audit report from the store's public pages and delivers it by email within the tier's delivery window, which starts when payment is received.</p>
