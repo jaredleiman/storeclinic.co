@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://storeclinic.co/sitemap.xml

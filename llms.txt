@@ -1,0 +1,32 @@
+# StoreClinic
+
+> StoreClinic sells written conversion audits for independent online stores on Shopify, WooCommerce, Squarespace, Wix, and BigCommerce. Every audit reads the store's own public pages, cites the evidence behind each finding, and is reviewed by a person before it is delivered. StoreClinic is run by Brahka Labs. Contact: hello@storeclinic.co
+
+## Offers
+
+- Conversion Teardown ($349): a written audit report (PDF, 8 to 12 pages) covering the biggest conversion blockers, a revenue impact analysis, the offer and pricing structure scored from 1 to 10, product page copy diagnosis, a trust and credibility gap review, and a 7-item prioritized action plan labeled by effort. Delivered in 48 to 72 hours. Full refund if the report holds fewer than 3 specific, actionable fixes.
+- Growth Audit ($799): everything in the Conversion Teardown, plus a 15 to 20 minute Loom video walkthrough of the store, delivered in 48 hours through a priority queue.
+- Free mini-teardown: 3 specific findings from a store's public pages, sent by email, free. Request it at https://storeclinic.co/free-mini-teardown.html
+
+## Independent Store Conversion Study (1,008 stores, Oct–Nov 2026)
+
+StoreClinic read 1,008 live online stores the way a first-time buyer reads them: the homepage, the featured product, the policy pages, the signup forms. Public pages only, with no accounts and no back-end access. Headline findings:
+
+- 593 of 1,008 stores (58.8%) had no findable shipping page.
+- 521 of 1,008 stores (51.7%) showed no product reviews on product pages.
+- 479 of 1,008 stores (47.5%) had no email capture.
+- 475 of 1,008 stores (47.1%) had no findable returns page.
+- 270 of 1,008 stores (26.8%) displayed a sale price equal to the regular price.
+- 104 of 1,008 stores (10.3%) had a featured homepage product that was sold out.
+- 93 of 1,008 stores (9.2%) had product descriptions of only a few lines.
+
+Full study, methodology, and copy-paste citations: https://storeclinic.co/research-1008-store-study.html
+
+## Links
+
+- Home: https://storeclinic.co/
+- The 1,008-store study: https://storeclinic.co/research-1008-store-study.html
+- Blog: https://storeclinic.co/blog.html
+- Free mini-teardown: https://storeclinic.co/free-mini-teardown.html
+- Sample report (a fictional store, labeled as such): https://storeclinic.co/sample-report.html
+- Revenue-gap calculator: https://storeclinic.co/revenue-gap-calculator.html
